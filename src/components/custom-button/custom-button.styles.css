@@ -1,0 +1,13 @@
+button{
+    width: 30%;
+    background-color: white;
+    color: purple;
+    height: 35px;
+    margin-top: 20px;
+    margin-left: auto;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
