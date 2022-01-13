@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import './App.css';
 import AddNewUser from './components/add-new-user/add-new-user.component';
+import ErrorModal from './components/error-modal/error-modal.component';
 import UserList from './components/user-list/user-list.component';
 
 
@@ -22,6 +23,7 @@ function App() {
   <div>
     <AddNewUser addUser = {addNewUserHandler} />
     <UserList users = {users} />
+    <ErrorModal/>
   </div>
   )
 }
