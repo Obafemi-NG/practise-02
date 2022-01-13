@@ -6,12 +6,14 @@ import CustomButton from '../custom-button/custom-button.component';
 import Card from '../card/card.component'
 
 import './add-new-user.styles.css'
+import ErrorModal from '../error-modal/error-modal.component';
 
 const AddNewUser = (props) => {
     const [newUser, setNewUser] = useState({
         username : '',
         age : '',
     });
+    const [error, setError] = useState();
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -26,7 +28,18 @@ const AddNewUser = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(newUser.username.trim().length === 0 || newUser.age.trim().length === 0) {
+        if(newUser.username.trim().length === 0 && newUser.age.trim().length === 0) {
+            setError({
+                title: 'invalid inputs',
+                message: 'You cannot submit an empty form, Please fill in valid username and age'
+            })
+            return ;
+        }
+        if(newUser.age < 1) {
+            setError({
+                title : 'Invalid Age',
+                message : 'Please enter a valid age > 0'
+            })
             return;
         }
         console.log(newUser);
@@ -35,10 +48,16 @@ const AddNewUser = (props) => {
             username : '',
             age : '',
         })
+    };
+
+    const errorHandler = () => {
+        setError(null);
     }
 
     return(
         <div>
+            {error && <ErrorModal title = {error.title} message = {error.message} onClick = {errorHandler} /> }
+            
             <Card>
                 <form onSubmit = {handleSubmit}>
                     <UserInput type = 'text'

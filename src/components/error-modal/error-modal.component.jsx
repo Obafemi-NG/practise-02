@@ -1,17 +1,25 @@
 import React from 'react';
-import Card from '../card/card.component';
-
-import CustomButton from '../custom-button/custom-button.component';
-import ModalCard from '../modal-card/modal-card.component';
 
 import './error-modal.styles.css';
 
-const ErrorModal = () => {
+const ErrorModal = (props) => {
     return(
         <React.Fragment>
-            <div className = 'backdrop' />
-            <ModalCard title = 'An Error Occured !' message = 'You did not add any input for name or Age for any new user'  />
+            <div className = 'backdrop' onClick = {props.onClick} />
+            <div className = 'modal-card'>
+                <div className = 'modal-header'>
+                    {props.title}
+                </div>
+                <div className = 'modal-body'>
+                    {props.message}
+                    <div>
+                    <button className = 'modal-btn' onClick = {props.onClick} > Okay </button>
+                    </div>
+
+                </div>
+                
+            </div>
         </React.Fragment>
-            )
+    )
 };
 export default ErrorModal;
